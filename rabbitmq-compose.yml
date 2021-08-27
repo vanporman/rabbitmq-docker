@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  rabbitmq:
+    hostname: "rabbit-1"
+    image: rabbitmq:3.8-management
+    container-name: "rabbitmq-test"
+    restart: always
+    ports:
+    - 5672:5672
+    - 8088:15672
+    volumes:
+    - "./rabbitmq-data/data/:/var/lib/rabbitmq/mnesia/"
+    - "./rabbitmq-data/log/:/var/log/rabbitmq"
+    networks:
+    - rabbits
+
+networks:
+  rabbits:
+    driver: bridge

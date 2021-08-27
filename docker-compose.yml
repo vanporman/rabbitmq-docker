@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  rabbit-1:
+    image: rabbitmq:3.8-management
+    hostname: "rabbit-1"
+    ports:
+    - "5672:5672"
+    - "8088:15672"
+    volumes:
+    - "./rabbitmq-data:/var/lib/rabbitmq/mnesia"
+    networks:
+    - rabbits
+
+networks:
+  rabbits:
+    driver: bridge
